@@ -48,3 +48,5 @@ Deploy application
     cd "github-actions-with-aws-sam/src/ServerlessAPI"
     sam deploy
 ```
+
+minor edit
