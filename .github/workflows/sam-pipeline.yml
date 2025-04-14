@@ -22,4 +22,4 @@ jobs:
 # Run Unit tests- Specify unit tests here 
 
 # sam deploy
-      - run: sam deploy --no-confirm-changeset --s3-bucket je-github-actions-sam --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM --region eu-north-1
+      - run: sam deploy --debug --no-confirm-changeset --s3-bucket je-github-actions-sam --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM --region eu-north-1
