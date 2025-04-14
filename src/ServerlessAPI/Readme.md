@@ -49,4 +49,4 @@ Deploy application
     sam deploy
 ```
 
-try again
+added IAM perm
