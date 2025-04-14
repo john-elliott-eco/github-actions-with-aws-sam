@@ -14,7 +14,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Description: A simple example includes a .NET Core WebAPI App with DynamoDB table.
-      CodeUri: ./src/ServerlessAPI/bin/Release/net8.0/publish/
+      CodeUri: ./src/ServerlessAPI/
       Handler: ServerlessAPI
       Runtime: dotnet8
       MemorySize: 1024

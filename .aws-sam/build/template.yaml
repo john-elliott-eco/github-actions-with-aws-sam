@@ -24,8 +24,7 @@ Resources:
             Ref: SampleTable
       Policies:
       - DynamoDBCrudPolicy:
-          TableName:
-            Ref: SampleTable
+          TableName: github-actions-with-aws-samBookCatalog
       Events:
         ProxyResource:
           Type: HttpApi
@@ -34,13 +33,17 @@ Resources:
             Path: /{proxy+}
             Method: ANY
         RootResource:
-          PayloadFormatVersion: '2.0'
           Type: HttpApi
           Properties:
+            PayloadFormatVersion: '2.0'
             Path: /
             Method: ANY
     Metadata:
       SamResourceId: NetCodeWebAPIServerless
+  HttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: Prod
   SampleTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
@@ -55,4 +58,4 @@ Outputs:
   WebEndpoint:
     Description: API Gateway endpoint URL
     Value:
-      Fn::Sub: https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/
+      Fn::Sub: https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/
