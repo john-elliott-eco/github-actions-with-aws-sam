@@ -14,7 +14,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Description: A simple example includes a .NET Core WebAPI App with DynamoDB table.
-      CodeUri: ./src/ServerlessAPI/
+      CodeUri: ./src/ServerlessAPI/bin/Release/net8.0/
       Handler: ServerlessAPI
       Runtime: dotnet8
       MemorySize: 1024
@@ -38,6 +38,11 @@ Resources:
             Path: /
             Method: ANY
 
+  HttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: Prod
+
   SampleTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
@@ -52,4 +57,4 @@ Resources:
 Outputs:
   WebEndpoint:
     Description: API Gateway endpoint URL
-    Value: !Sub "https://${NetCodeWebAPIServerless}.execute-api.${AWS::Region}.amazonaws.com/"
+    Value: !Sub "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
