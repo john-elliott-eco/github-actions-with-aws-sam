@@ -23,7 +23,7 @@ Resources:
           SAMPLE_TABLE: !Ref SampleTable
       Policies:
         - DynamoDBCrudPolicy:
-            TableName: !Ref SampleTable
+            TableName: github-actions-with-aws-samBookCatalog
       Events:
         ProxyResource:
           Type: HttpApi
