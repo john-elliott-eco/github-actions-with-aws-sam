@@ -13,7 +13,7 @@ Resources:
   NetCodeWebAPIServerless:
     Type: AWS::Serverless::Function
     Properties:
-      Description: A simple example includes a .NET Core WebAPI App with DynamoDB table.
+      Description: A Dot Net 8 Serverless Function 
       CodeUri: ./src/ServerlessAPI/
       Handler: ServerlessAPI
       Runtime: dotnet8
@@ -24,6 +24,8 @@ Resources:
       Policies:
         - DynamoDBCrudPolicy:
             TableName: github-actions-with-aws-samBookCatalog
+        - SQSPollerPolicy:
+            QueueName: !GetAtt ProcessingQueue.QueueName
       Events:
         ProxyResource:
           Type: HttpApi
@@ -37,6 +39,13 @@ Resources:
             PayloadFormatVersion: '2.0'
             Path: /
             Method: ANY
+        SQSEvent:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt ProcessingQueue.Arn
+            BatchSize: 10
+            FunctionResponseTypes:
+              - ReportBatchItemFailures
 
   HttpApi:
     Type: AWS::Serverless::HttpApi
