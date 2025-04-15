@@ -29,7 +29,7 @@ Resources:
           Type: HttpApi
           Properties:
             PayloadFormatVersion: '2.0'
-            Path: /api/books/{proxy+}
+            Path: /test
             Method: ANY
         RootResource:
           Type: HttpApi
