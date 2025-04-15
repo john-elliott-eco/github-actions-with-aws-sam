@@ -5,6 +5,40 @@ namespace ServerlessAPI.Services
 {
     public class GetParams
     {
+        private readonly IAmazonSimpleSystemsManagement _ssmClient;
+
+        public GetParams()
+        {
+            _ssmClient = new AmazonSimpleSystemsManagementClient();
+        }
+
+        public async Task<Dictionary<string, string>> GetParametersAsync(string path, bool withDecryption)
+        {
+            var request = new GetParametersByPathRequest
+            {
+                Path = path,
+                Recursive = true,
+                WithDecryption = withDecryption
+            };
+
+            var response = await _ssmClient.GetParametersByPathAsync(request);
+
+            return response.Parameters.ToDictionary(p => p.Name, p => p.Value);
+        }
+
+        public async Task<string> GetParameterAsync(string name, bool withDecryption)
+        {
+            var request = new GetParameterRequest
+            {
+                Name = name,
+                WithDecryption = withDecryption
+            };
+
+            var response = await _ssmClient.GetParameterAsync(request);
+            return response.Parameter.Value;
+        }
+
+        /*
         public async Task<Dictionary<string, string>> GetParametersAsync(string parameterName, bool decrypt)
         {
             using var client = new AmazonSimpleSystemsManagementClient();
@@ -23,5 +57,6 @@ namespace ServerlessAPI.Services
 
             return response.Parameters.ToDictionary(p => p.Name, p => p.Value);
         }
+        */
     }
 }

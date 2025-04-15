@@ -43,10 +43,9 @@ app.MapGet("/", () => "Welcome to running ASP.NET Core Minimal API on AWS Lambda
 
 app.MapGet("/test", async () =>
 {
-    //get parameters from GetParams
     var getParams = new GetParams();
-    var parameters = await getParams.GetParametersAsync("/sypol/owner-notification/secret-test", true);
-    return string.Join(", ", parameters.Select(p => $"{p.Key}={p.Value}"));
+    var newQueueName = await getParams.GetParameterAsync("/sypol/owner-notifications/Dev/new-queue-name", false);
+    return $"New Queue Name: {newQueueName}";
 });
 
 
