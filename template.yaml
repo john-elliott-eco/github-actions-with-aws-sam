@@ -69,7 +69,7 @@ Resources:
     Properties:
       QueueName: !Sub ${AWS::StackName}-queue
       MessageRetentionPeriod: 1800  # 30 minutes in seconds
-      VisibilityTimeout: 30
+      VisibilityTimeout: 120
       RedrivePolicy:
         deadLetterTargetArn: !GetAtt ProcessingDLQ.Arn
         maxReceiveCount: 3 # Messages will be moved to DLQ after 3 failed attempts
