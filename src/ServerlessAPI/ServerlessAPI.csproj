@@ -14,7 +14,9 @@
 
   <ItemGroup>
     <PackageReference Include="Amazon.Lambda.AspNetCoreServer.Hosting" Version="1.0.0" />
+    <PackageReference Include="Amazon.Lambda.SQSEvents" Version="2.2.0" />
     <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.3.7" />
+    <PackageReference Include="AWSSDK.SimpleSystemsManagement" Version="3.7.404.15" />
   </ItemGroup>
 
   <ItemGroup>

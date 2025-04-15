@@ -24,6 +24,11 @@ Resources:
       Policies:
       - DynamoDBCrudPolicy:
           TableName: github-actions-with-aws-samBookCatalog
+      - SQSPollerPolicy:
+          QueueName:
+            Fn::GetAtt:
+            - ProcessingQueue
+            - QueueName
       Events:
         ProxyResource:
           Type: HttpApi

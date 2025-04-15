@@ -10,7 +10,9 @@
       "ServerlessAPI/1.0.0": {
         "dependencies": {
           "AWSSDK.DynamoDBv2": "3.7.3.7",
-          "Amazon.Lambda.AspNetCoreServer.Hosting": "1.0.0"
+          "AWSSDK.SimpleSystemsManagement": "3.7.404.15",
+          "Amazon.Lambda.AspNetCoreServer.Hosting": "1.0.0",
+          "Amazon.Lambda.SQSEvents": "2.2.0"
         },
         "runtime": {
           "ServerlessAPI.dll": {}
@@ -108,22 +110,41 @@
           }
         }
       },
-      "AWSSDK.Core/3.7.8.6": {
+      "Amazon.Lambda.SQSEvents/2.2.0": {
         "runtime": {
-          "lib/netcoreapp3.1/AWSSDK.Core.dll": {
+          "lib/net8.0/Amazon.Lambda.SQSEvents.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "AWSSDK.Core/3.7.402.40": {
+        "runtime": {
+          "lib/net8.0/AWSSDK.Core.dll": {
             "assemblyVersion": "3.3.0.0",
-            "fileVersion": "3.7.8.6"
+            "fileVersion": "3.7.402.40"
           }
         }
       },
       "AWSSDK.DynamoDBv2/3.7.3.7": {
         "dependencies": {
-          "AWSSDK.Core": "3.7.8.6"
+          "AWSSDK.Core": "3.7.402.40"
         },
         "runtime": {
           "lib/netcoreapp3.1/AWSSDK.DynamoDBv2.dll": {
             "assemblyVersion": "3.3.0.0",
             "fileVersion": "3.7.3.7"
+          }
+        }
+      },
+      "AWSSDK.SimpleSystemsManagement/3.7.404.15": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.402.40"
+        },
+        "runtime": {
+          "lib/net8.0/AWSSDK.SimpleSystemsManagement.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.404.15"
           }
         }
       },
@@ -320,12 +341,19 @@
       "path": "amazon.lambda.serialization.systemtextjson/2.2.0",
       "hashPath": "amazon.lambda.serialization.systemtextjson.2.2.0.nupkg.sha512"
     },
-    "AWSSDK.Core/3.7.8.6": {
+    "Amazon.Lambda.SQSEvents/2.2.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-sLPGcT5nIwgQ852F0nDOrzhKMpFZ8TpcS0GHu+Z5OAkuizlOSQSJkbWKgbG12D6xgdhtlqU9i9Dr88QFhUnKIg==",
-      "path": "awssdk.core/3.7.8.6",
-      "hashPath": "awssdk.core.3.7.8.6.nupkg.sha512"
+      "sha512": "sha512-RyYLgEa6nh+VJrCfTDKxvTLS1+eLDIIDyHgwDY3TR1WQz1+UeDIcccOJvoDk2nmjkSA0TfWJmZX9Ld0ySf57lA==",
+      "path": "amazon.lambda.sqsevents/2.2.0",
+      "hashPath": "amazon.lambda.sqsevents.2.2.0.nupkg.sha512"
+    },
+    "AWSSDK.Core/3.7.402.40": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DSJubHYjaugwA0tiktUxHF5cyaXlN/L9YoXSTTrie3qk16KMAWIiM7P6o7s8wEnkZLtiZQGEerHO+Ov0nmQ5vw==",
+      "path": "awssdk.core/3.7.402.40",
+      "hashPath": "awssdk.core.3.7.402.40.nupkg.sha512"
     },
     "AWSSDK.DynamoDBv2/3.7.3.7": {
       "type": "package",
@@ -333,6 +361,13 @@
       "sha512": "sha512-IiZTySbKLqIfkCXlU0wh38/G0X3ILgjbw3zkfC9FU2+fGsZ30ojWRYChxo+Db4K1vbgLiAHpX9G3kU3KnUdUeg==",
       "path": "awssdk.dynamodbv2/3.7.3.7",
       "hashPath": "awssdk.dynamodbv2.3.7.3.7.nupkg.sha512"
+    },
+    "AWSSDK.SimpleSystemsManagement/3.7.404.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rCtgDxSmCnYG9Sk2iHkgO3GmPo6USTrMzMX81Ny+hSQBKNvp5NYWsbTYRYELiO2J9+84mD7otQwH5hwfNN3McQ==",
+      "path": "awssdk.simplesystemsmanagement/3.7.404.15",
+      "hashPath": "awssdk.simplesystemsmanagement.3.7.404.15.nupkg.sha512"
     },
     "Microsoft.Extensions.Configuration/2.1.0": {
       "type": "package",
