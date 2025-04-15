@@ -4,6 +4,7 @@ using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
 using ServerlessAPI.Entities;
 using ServerlessAPI.Repositories;
+using ServerlessAPI.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -40,28 +41,12 @@ app.MapControllers();
 
 app.MapGet("/", () => "Welcome to running ASP.NET Core Minimal API on AWS Lambda - Test");
 
-app.MapGet("/test", () =>
+app.MapGet("/test", async () =>
 {
-    var books = new List<Book> {
-            new Book
-            {
-                Id = Guid.NewGuid(),
-                Title = "Book 1",
-                ISBN = "1234567890",
-                Authors = new List<string> { "Author 1", "Author 2" },
-                CoverPage = "https://example.com/cover.jpg"
-            },
-            new Book
-            {
-                Id = Guid.NewGuid(),
-                Title = "Book 2",
-                ISBN = "0987654321",
-                Authors = new List<string> { "Author 3", "Author 4" },
-                CoverPage = "https://example.com/cover2.jpg"
-            }
-        };
-
-    return books;
+    //get parameters from GetParams
+    var getParams = new GetParams();
+    var parameters = await getParams.GetParametersAsync("/sypol/owner-notifications/Dev/queue-name", false);
+    return string.Join(", ", parameters.Select(p => $"{p.Key}={p.Value}"));
 });
 
 
