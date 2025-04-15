@@ -26,6 +26,11 @@ Resources:
             TableName: github-actions-with-aws-samBookCatalog
         - SQSPollerPolicy:
             QueueName: !GetAtt ProcessingQueue.QueueName
+        - Statement:
+            Effect: Allow
+            Action:
+              - ssm:GetParameters
+            Resource: arn:aws:ssm:eu-north-1:619071355434:parameter/sypol/owner-notifications/Dev/queue-name
       Events:
         ProxyResource:
           Type: HttpApi
