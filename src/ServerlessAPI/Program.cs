@@ -45,7 +45,7 @@ app.MapGet("/test", async () =>
 {
     //get parameters from GetParams
     var getParams = new GetParams();
-    var parameters = await getParams.GetParametersAsync("/sypol/owner-notifications/Dev/queue-name", false);
+    var parameters = await getParams.GetParametersAsync("/sypol/owner-notification/secret-test", true);
     return string.Join(", ", parameters.Select(p => $"{p.Key}={p.Value}"));
 });
 
