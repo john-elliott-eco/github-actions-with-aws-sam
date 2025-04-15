@@ -5,18 +5,9 @@ codeuri = "C:\\git\\POC\\sam\\github\\src\\ServerlessAPI"
 runtime = "dotnet8"
 architecture = "x86_64"
 handler = "ServerlessAPI"
-source_hash = "766e5a9f8b671f57d6eb8bd34029c0460112922660b45ce98ae74f3b3b7e4ab2"
+source_hash = "c3040c49f2b1043b10132df1ba63ceee9278f005d4bd25f41bd0479d6c282cb9"
 manifest_hash = ""
 packagetype = "Zip"
 functions = ["NetCodeWebAPIServerless"]
-
-[function_build_definitions.6576e117-650b-48cd-ba16-1d3c68f10396]
-codeuri = "C:\\git\\POC\\sam\\github\\src"
-runtime = "dotnet8"
-architecture = "arm64"
-handler = "SqsIntegration::SqsIntegration.Function::FunctionHandler"
-manifest_hash = ""
-packagetype = "Zip"
-functions = ["ProcessorFunction"]
 
 [layer_build_definitions]
