@@ -30,7 +30,7 @@ Resources:
             Effect: Allow
             Action:
               - ssm:GetParameters
-            Resource: arn:aws:ssm:eu-north-1:619071355434:parameter/sypol/owner-notifications/Dev/queue-name
+            Resource: arn:aws:ssm:eu-north-1:619071355434:parameter/*
       Events:
         ProxyResource:
           Type: HttpApi
