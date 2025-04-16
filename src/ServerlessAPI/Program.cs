@@ -57,7 +57,7 @@ app.MapGet("/test", async () =>
 app.MapGet("/config", static () =>
 {
     // Path to the samconfig.toml file
-    var tomlFilePath = "samconfig.toml";
+    var tomlFilePath = "../../samconfig.toml";
 
     // Read and parse the TOML file
     var tomlContent = File.ReadAllText(tomlFilePath);
