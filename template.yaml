@@ -30,6 +30,7 @@ Resources:
             Effect: Allow
             Action:
               - ssm:GetParameters
+              - ssm:GetParametersByPath
             Resource: arn:aws:ssm:eu-north-1:619071355434:parameter/*
       Events:
         ProxyResource:
