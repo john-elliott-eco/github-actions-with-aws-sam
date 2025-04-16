@@ -5,6 +5,8 @@ using Amazon.DynamoDBv2.DataModel;
 using ServerlessAPI.Entities;
 using ServerlessAPI.Repositories;
 using ServerlessAPI.Services;
+using Tomlyn;
+using Tomlyn.Model;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -50,6 +52,34 @@ app.MapGet("/test", async () =>
     var getParams = new GetParams();
     var parameters = await getParams.GetParametersAsync("/sypol/owner-notification/secret-test", true);
     return string.Join(", ", parameters.Select(p => $"{p.Key}={p.Value}"));
+});
+
+app.MapGet("/config", static () =>
+{
+    // Path to the samconfig.toml file
+    var tomlFilePath = "samconfig.toml";
+
+    // Read and parse the TOML file
+    var tomlContent = File.ReadAllText(tomlFilePath);
+    var tomlData = Toml.Parse(tomlContent);
+
+    // Cast the parsed data to a TomlTable
+    var table = tomlData.ToModel() as TomlTable;
+
+    // Navigate the table to extract the 'myenv' value
+    if (table != null &&
+        table.TryGetValue("default", out var defaultSection) &&
+        defaultSection is TomlTable defaultTable &&
+        defaultTable.TryGetValue("deploy", out var deploySection) &&
+        deploySection is TomlTable deployTable &&
+        deployTable.TryGetValue("parameters", out var parametersSection) &&
+        parametersSection is TomlTable parametersTable &&
+        parametersTable.TryGetValue("myenv", out var myenvValue))
+    {
+        return myenvValue?.ToString() ?? "myenv not found";
+    }
+
+    return "myenv not found";
 });
 
 
