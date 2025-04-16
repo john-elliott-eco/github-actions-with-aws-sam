@@ -42,6 +42,12 @@ Resources:
             PayloadFormatVersion: '2.0'
             Path: /test
             Method: ANY
+        ConfigResource:
+          Type: HttpApi
+          Properties:
+            PayloadFormatVersion: '2.0'
+            Path: /config
+            Method: ANY
         RootResource:
           Type: HttpApi
           Properties:

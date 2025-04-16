@@ -54,32 +54,20 @@ app.MapGet("/test", async () =>
     return string.Join(", ", parameters.Select(p => $"{p.Key}={p.Value}"));
 });
 
-app.MapGet("/config", static () =>
+app.MapGet("/config", (IConfiguration configuration) =>
 {
-    // Path to the samconfig.toml file
-    var tomlFilePath = "../../samconfig.toml";
+    // Retrieve the value of 'jeenv' from appsettings.json
+    var jeenv = configuration["jeenv"];
 
-    // Read and parse the TOML file
-    var tomlContent = File.ReadAllText(tomlFilePath);
-    var tomlData = Toml.Parse(tomlContent);
+    // Retrieve the value of 'samenv' from the environment variable
+    var samenv = Environment.GetEnvironmentVariable("SAMENV");
 
-    // Cast the parsed data to a TomlTable
-    var table = tomlData.ToModel() as TomlTable;
-
-    // Navigate the table to extract the 'myenv' value
-    if (table != null &&
-        table.TryGetValue("default", out var defaultSection) &&
-        defaultSection is TomlTable defaultTable &&
-        defaultTable.TryGetValue("deploy", out var deploySection) &&
-        deploySection is TomlTable deployTable &&
-        deployTable.TryGetValue("parameters", out var parametersSection) &&
-        parametersSection is TomlTable parametersTable &&
-        parametersTable.TryGetValue("myenv", out var myenvValue))
+    // Return both values
+    return new
     {
-        return myenvValue?.ToString() ?? "myenv not found";
-    }
-
-    return "myenv not found";
+        jeenv = jeenv ?? "jeenv not found",
+        samenv = samenv ?? "samenv not found"
+    };
 });
 
 
