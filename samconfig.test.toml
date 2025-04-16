@@ -17,7 +17,7 @@ capabilities = "CAPABILITY_IAM"
 confirm_changeset = true
 resolve_s3 = false
 s3_bucket = "je-github-actions-sam"
-myenv = "je-dev"
+myenv = "je-test"
 
 [default.package.parameters]
 resolve_s3 = false

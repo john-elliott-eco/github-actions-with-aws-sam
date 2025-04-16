@@ -21,7 +21,7 @@ Resources:
       Environment:
         Variables:
           SAMPLE_TABLE: !Ref SampleTable
-          SAMENV: !Sub "{{resolve:ssm-secure:/sypol/owner-notification/secret-test}}"
+          SAMENV: !Ref MyEnv
       Policies:
         - DynamoDBCrudPolicy:
             TableName: github-actions-with-aws-samBookCatalog
@@ -97,3 +97,9 @@ Outputs:
   WebEndpoint:
     Description: API Gateway endpoint URL
     Value: !Sub "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+
+Parameters:
+  MyEnv:
+    Type: String
+    Default: "default-env"
+    Description: The environment value to set for SAMENV
