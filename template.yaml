@@ -21,7 +21,7 @@ Resources:
       Environment:
         Variables:
           SAMPLE_TABLE: !Ref SampleTable
-          SAMENV: !Sub "{{resolve:ssm:/sypol/owner-notification/secret-test}}"
+          SAMENV: !Sub "{{resolve:ssm-secure:/sypol/owner-notification/secret-test}}"
       Policies:
         - DynamoDBCrudPolicy:
             TableName: github-actions-with-aws-samBookCatalog
